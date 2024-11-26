@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задание 4</title>
+</head>
+
+<body>
+    <div class="color">
+        <div id="GRB">
+            <div class="divForEnterColor">R<input type="text" class="enterColor" id="r"></div>
+            <div class="divForEnterColor">G<input type="text" class="enterColor" id="g"></div>
+            <div class="divForEnterColor">B<input type="text" class="enterColor" id="b"></div>
+        </div>
+        <div class="button-container">
+            <button onclick="getColor()"> Получить</button>
+        </div>
+    </div>
+
+    <div id="allColors">
+    </div>
+
+    <style>
+        .color {
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        #codeColor {
+            display: inline-block;
+        }
+
+        .divColor {
+            margin: 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            border: 1px solid black;
+            width: 170px;
+            height: 42px;
+        }
+
+        #allColors {
+            background: #71e0ff41;
+            min-width: 10px;
+            min-height: 10px;
+            max-width: 95%;
+            display: inline-block;
+        }
+
+        .colorBlock {
+            display: inline-block;
+            border: 1px solid black;
+            width: 40px;
+            height: 40px;
+        }
+
+        #GRB {
+            display: flex;
+        }
+
+        .enterColor {
+            margin-left: 5px;
+            display: inline-block;
+            width: 25px;
+        }
+
+        .divForEnterColor {
+            margin: 10px;
+        }
+
+        button {
+            display: block;
+            margin: 10px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background: #1b7400;
+            color: aliceblue;
+            font-size: 16px;
+            transition: all ease-in 0.2s;
+        }
+
+        button:hover {
+            background: #176100;
+            padding: 15px 25px;
+            margin: 5px;
+            border-radius: 0px;
+        }
+    </style>
+
+    <script>
+        function getColor() {
+            const R = Number(document.getElementById("r").value);
+            const G = Number(document.getElementById("g").value);
+            const B = Number(document.getElementById("b").value);
+
+            if (isNaN(R) || isNaN(G) || isNaN(B)) {
+                alert("Все значения должны быть числами!");
+            }
+            else if (R > 255 || G > 255 || B > 255) {
+                alert("Значения не могут быть больше 255!");
+            }
+            else {
+                const newColor = document.createElement("div");
+                newColor.classList.add("divColor");
+
+                const colorBlock = document.createElement("div");
+                colorBlock.classList.add("colorBlock");
+                colorBlock.style.backgroundColor = `rgb(${R}, ${G}, ${B})`;
+
+                const codeText = document.createElement("div");
+                codeText.id = "codeColor";
+                codeText.innerText = `R: ${R}; G: ${G}; B: ${B};`;
+
+                newColor.appendChild(colorBlock);
+                newColor.appendChild(codeText);
+
+                document.getElementById('allColors').appendChild(newColor);
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задание 3</title>
+</head>
+
+<body>
+    <div id="forma">
+        <p class="nameforform">Имя</p>
+        <input type="text" id="firstName">
+        <hr>
+        <p class="nameforform">Фамилия</p>
+        <input type="text" id="lastName">
+        <hr>
+        <p class="nameforform">День рождения</p>
+        <input type="date" id="birthday">
+        <hr>
+        <p class="nameforform">Пол</p>
+        <div id="gender">
+            <label>
+                <input type="radio" name="Gender" class="gender" value="Male"> Мущина
+            </label>
+            <label>
+                <input type="radio" name="Gender" class="gender" value="Female"> Женщина
+            </label>
+        </div>
+        <hr>
+        <p class="nameforform">Страна</p>
+        <input type="text" id="country">
+        <hr>
+        <p>Город</p>
+        <input type="text" id="city">
+        <hr>
+        <p>Скилы</p>
+        <div id="skills">
+            <label>
+                <input type="checkbox" id="html" value="HTML"> HTML
+            </label>
+            <label>
+                <input type="checkbox" id="css" value="CSS"> CSS
+            </label>
+            <label>
+                <input type="checkbox" id="php" value="PHP"> PHP
+            </label>
+            <label>
+                <input type="checkbox" id="cpp" value="C++"> C++
+            </label>
+            <label>
+                <input type="checkbox" id="js" value="JS"> JS
+            </label>
+            <label>
+                <input type="checkbox" id="java" value="Java"> Java
+            </label>
+            <label>
+                <input type="checkbox" id="cs" value="C#"> C#
+            </label>
+        </div>
+        <button id="btn" onclick="result()">Резельтат</button>
+    </div>
+    <div id="result"></div>
+
+    <style>
+        #forma {
+            width: 410px;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            margin-top: 20px;
+            background-color: #f9f9f9;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        #btn {
+            display: block;
+            margin: 20px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background: #1b7400;
+            color: aliceblue;
+            font-size: 16px;
+            transition: all ease-in 0.2s;
+        }
+
+        #btn:hover {
+            background: #176100;
+            padding: 15px 25px;
+            margin: 15px;
+            border-radius: 0px;
+        }
+    </style>
+
+    <script>
+        function result() {
+            event.preventDefault();
+
+            const getValue = id => document.getElementById(id).value || "Неуказано";
+            const gender = document.querySelector('input[name="Gender"]:checked')?.value || "Неуказано";
+            const skills = [...document.querySelectorAll('#skills input:checked')].map(s => s.value).join(", ") || 'Нету';
+
+
+
+            document.getElementById('result').innerHTML = `
+            <h2>Резельтат:</h2>
+            <table>
+                <tr><th>Имя</th><td>${getValue('firstName')}</td></tr>
+                <tr><th>Фамилия</th><td>${getValue('lastName')}</td></tr>
+                <tr><th>День рождения</th><td>${getValue('birthday')}</td></tr>
+                <tr><th>Пол</th><td>${gender}</td></tr>
+                <tr><th>Страна</th><td>${getValue('country')}</td></tr>
+                <tr><th>Город</th><td>${getValue('city')}</td></tr>
+                <tr><th>Скилы</th><td>${skills}</td></tr>
+            </table>
+        `;
+        }
+    </script>
+
+</body>
+
+</html>
